@@ -19,6 +19,11 @@ dependencies:
   easy_localization: ^3.0.8
   google_fonts: ^8.0.0
   dropdown_button2: ^2.3.9
+  dio: ^5.9.1
+  flutter_bloc: ^9.1.1
+  bloc: ^9.2.0
+  loader_overlay: ^5.0.0
+  cached_network_image: ^3.4.1
 
 dev_dependencies:
   flutter_test:

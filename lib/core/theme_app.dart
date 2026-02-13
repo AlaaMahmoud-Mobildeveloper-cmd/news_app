@@ -18,7 +18,7 @@ class AppThemeData{
      error: Color(0xFFB00020),
      onError: Color(0xFFFFFFFF),
      surface: Color(0xFFF5F5F5),
-     onSurface: Color(0xFF1A1A1A),
+     onSurface: Color(0xFF515151),
    ),
     textTheme: TextTheme(
       titleLarge:GoogleFonts.poppins(

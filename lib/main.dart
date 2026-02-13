@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:news/Provider/theme_provider.dart';
 import 'package:news/core/theme_app.dart';
-import 'package:news/screens/gnarel_Screen/gnarel_screen.dart';
 import 'package:news/screens/home_Screen/home_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -39,7 +38,7 @@ class MyApp extends StatelessWidget {
       initialRoute: HomeScreen.routeName ,
       routes: {
         HomeScreen.routeName: (context) =>  HomeScreen(),
-        GnarlScreen.routeName:(context)=> GnarlScreen()
+
       },
     );
   }

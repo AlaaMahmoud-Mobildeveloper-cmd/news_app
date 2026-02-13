@@ -7,4 +7,5 @@ class AppString{
   static String theme="Theme";
   static String lightTheme="Light";
   static String darkTheme="Dark";
+  static String view="View All";
 }

@@ -4,4 +4,5 @@ class AppImages{
   static String lungIcon ="assets/images/lun_ic.png";
   static String lightIcon ="assets/images/sun.png";
   static String darkIcon ="assets/images/moon.png";
+  static String errorImg ="assets/images/error.jpg";
 }

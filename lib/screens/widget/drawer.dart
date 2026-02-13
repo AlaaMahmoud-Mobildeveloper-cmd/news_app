@@ -2,26 +2,18 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:news/Provider/theme_provider.dart';
 import 'package:news/core/app_image.dart';
-import 'package:news/core/app_string.dart';
-import 'package:news/screens/gnarel_Screen/gnarel_screen.dart';
-import 'package:news/screens/home_Screen/home_screen.dart';
 import 'package:news/screens/widget/dropdown.dart';
-import 'package:news/screens/widget/switch.dart';
 import 'package:provider/provider.dart';
 
-class DrawerItems extends StatefulWidget {
-  const DrawerItems({super.key});
+class DrawerItems extends StatelessWidget {
+  Function onClick;
+   DrawerItems({super.key, required this.onClick});
 
-  @override
-  State<DrawerItems> createState() => _DrawerItemsState();
-}
-
-class _DrawerItemsState extends State<DrawerItems> {
   String? selectedLanguage;
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<ThemeProvider>(context);
-    var currentLocale;
+
     return Drawer(
       backgroundColor: Theme.of(context).colorScheme.onPrimary,
       child: Column(
@@ -43,7 +35,7 @@ class _DrawerItemsState extends State<DrawerItems> {
                 padding: EdgeInsets.symmetric(vertical: 15,horizontal: 15),
                 child: GestureDetector(
                   onTap: (){
-                    Navigator.pushNamedAndRemoveUntil(context, HomeScreen.routeName, (route) => false);
+                  onClick();
                   },
                   child: Row(
                       spacing: 10,

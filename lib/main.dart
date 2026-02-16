@@ -20,7 +20,6 @@ void main() async{
         child: MyApp()),
   ));
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -38,7 +37,6 @@ class MyApp extends StatelessWidget {
       initialRoute: HomeScreen.routeName ,
       routes: {
         HomeScreen.routeName: (context) =>  HomeScreen(),
-
       },
     );
   }

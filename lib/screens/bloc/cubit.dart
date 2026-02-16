@@ -4,25 +4,11 @@ import 'package:news/core/constans.dart';
 import 'package:news/models/news_response.dart';
 import 'package:news/models/sources_rspons.dart';
 import 'package:news/screens/bloc/stats.dart';
+import 'package:news/screens/reposatry/repo.dart';
 
 class HomeCubit extends Cubit<HomeState>{
-  late Dio dio ;
-  HomeCubit() : super(HomeInitState()){
-    dio = Dio(
-        BaseOptions(
-            baseUrl: ApiConstants.baseUrl,
-            headers: {
-              "x-api-key": {ApiConstants.apiKey}
-            }
-        )
-    );
-    dio.interceptors.add(LogInterceptor(
-      request: true,
-      requestBody: true,
-      requestHeader: true,
-      responseBody: true,
-    ));
-  }
+  HomeRepo repo;
+  HomeCubit(this.repo) : super(HomeInitState());
 
   List<Sources> sources = [];
   List<Articles> articles = [];
@@ -37,10 +23,8 @@ class HomeCubit extends Cubit<HomeState>{
   Future<void> getNewsData() async{
     emit(GetNewsDataLoadingState());
     try{
-      Response response = await dio.get(
-          "/v2/everything? &sources=${sources[selectedIndex].id}"
-      );
-      NewsResponse newsResponse = NewsResponse.fromJson(response.data);
+
+      NewsResponse newsResponse = await repo.getNewsResponse(sources[selectedIndex].id ?? "");
       if(newsResponse.status == "error"){
         emit(GetNewsDataErrorState());
         return;
@@ -55,11 +39,8 @@ class HomeCubit extends Cubit<HomeState>{
   Future<void> getSources(String categoryId) async{
     emit(GetSourcesLoadingState());
     try{
-      Response response = await dio.get(
-          "/v2/top-headlines/sources?&category=$categoryId"
-      );
 
-      SourcesResponse sourcesResponse = SourcesResponse.fromJson(response.data);
+      SourcesResponse sourcesResponse = await repo.getSourcesResponse(categoryId);
       sources = sourcesResponse.sources ?? [];
       emit(GetSourcesSuccessState());
       getNewsData();

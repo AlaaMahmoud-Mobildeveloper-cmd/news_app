@@ -10,5 +10,5 @@ abstract class HomeRepo {
 
 
   Future<NewsResponse> getNewsResponse(String sourceId);
-
+  Future<NewsResponse> searchNews(String query);
 }

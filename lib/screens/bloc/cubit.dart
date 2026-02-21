@@ -1,11 +1,11 @@
 import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
-import 'package:news/core/constans.dart';
+import 'package:injectable/injectable.dart';
 import 'package:news/models/news_response.dart';
 import 'package:news/models/sources_rspons.dart';
 import 'package:news/screens/bloc/stats.dart';
 import 'package:news/screens/reposatry/repo.dart';
 
+@injectable
 class HomeCubit extends Cubit<HomeState>{
   HomeRepo repo;
   HomeCubit(this.repo) : super(HomeInitState());

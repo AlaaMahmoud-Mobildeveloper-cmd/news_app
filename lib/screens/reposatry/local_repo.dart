@@ -15,4 +15,10 @@ class HomeLocalRepo extends HomeRepo{
     throw UnimplementedError();
   }
 
+  @override
+  Future<NewsResponse> searchNews(String query) {
+    // TODO: implement searchNews
+    throw UnimplementedError();
+  }
+
 }

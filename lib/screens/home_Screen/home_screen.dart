@@ -2,11 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:news/Provider/theme_provider.dart';
-import 'package:news/core/app_image.dart';
-import 'package:news/core/app_string.dart';
 import 'package:news/models/category_models.dart';
 import 'package:news/screens/home_Screen/view_Screen/category_screen.dart';
 import 'package:news/screens/home_Screen/view_Screen/sources_view.dart';
+import 'package:news/screens/search/search_item.dart';
 import 'package:news/screens/widget/drawer.dart';
 import 'package:provider/provider.dart';
 
@@ -35,7 +34,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           actions: [
             IconButton(
-                onPressed: (){},
+                onPressed: (){
+                  Navigator.pushNamed(context, SearchItem.routeName);
+                },
                 icon:Icon(Icons.search,
                   color: Theme.of(context).colorScheme.onPrimary,
                   size: 30,
@@ -48,9 +49,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         body: selectedCategory == null
             ? CategoryScreen(onClick:onClick ,)
-            :SourcesView(categoryId: selectedCategory!.id,
-      
-        ),
+            :SourcesView(categoryId: selectedCategory!.id)
+        ,
       ),
     );
 

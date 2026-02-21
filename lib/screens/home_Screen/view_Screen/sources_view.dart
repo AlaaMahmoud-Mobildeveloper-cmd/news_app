@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:news/di.dart';
 import 'package:news/screens/bloc/cubit.dart';
 import 'package:news/screens/bloc/stats.dart';
+import 'package:news/screens/home_Screen/view_Screen/detilse_news.dart';
 import 'package:news/screens/home_Screen/view_Screen/news_data.dart';
-import 'package:news/screens/reposatry/local_repo.dart';
-import 'package:news/screens/reposatry/remote_repo.dart';
+
 
 
 class SourcesView extends StatelessWidget {
@@ -17,7 +18,7 @@ class SourcesView extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return BlocProvider<HomeCubit>(
-        create: (context) => HomeCubit(true ? HomeRemoteRepo() : HomeLocalRepo())..getSources(categoryId),
+        create: (context) => getIt<HomeCubit>()..getSources(categoryId),
         child: BlocConsumer<HomeCubit,HomeState>(
             listener: (context,state){
               if (state is GetSourcesLoadingState){
@@ -53,6 +54,9 @@ class SourcesView extends StatelessWidget {
                   ),
                  Expanded(
                    child: NewsData(
+                     onClick: (index){
+
+                     },
                    ),
                  ),
                 ],

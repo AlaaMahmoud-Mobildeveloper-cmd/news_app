@@ -70,6 +70,7 @@ class DrawerItems extends StatelessWidget {
                   },
                   onChanged: (value) {
                    provider.changeTheme(value == ThemeMode.light ? ThemeMode.light : ThemeMode.dark);
+                   Navigator.pop(context);
                   },
 
                 ),
@@ -95,6 +96,7 @@ class DrawerItems extends StatelessWidget {
                      } else if (value == "ar_EG") {
                        context.setLocale(const Locale('ar', 'EG'));
                      }
+                     Navigator.pop(context);
                   }
 
                 )

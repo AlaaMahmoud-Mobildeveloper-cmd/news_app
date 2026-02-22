@@ -1,17 +1,18 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:news/core/api_manager.dart';
+import 'package:news/core/cache_helper.dart';
 import 'package:news/core/constans.dart';
 import 'package:news/models/news_response.dart';
 import 'package:news/models/sources_rspons.dart';
-import 'package:news/screens/reposatry/repo.dart';
+import 'package:news/screens/reposatry/remot/repo.dart';
 
 
-@Injectable(as: HomeRepo)
-class HomeRemoteRepo extends HomeRepo{
+@Injectable(as: HomeRepoRemote)
+class HomeRemoteRepoImpl extends HomeRepoRemote{
 
   ApiManager apiManager;
-  HomeRemoteRepo(this.apiManager);
+  HomeRemoteRepoImpl(this.apiManager);
   @override
   Future<NewsResponse> getNewsResponse(String sourceId) async{
    try{
@@ -19,6 +20,7 @@ class HomeRemoteRepo extends HomeRepo{
          "/v2/everything? &sources=$sourceId"
      );
      NewsResponse newsResponse = NewsResponse.fromJson(response.data);
+     await CacheHelper.saveNewsResponse(newsResponse, sourceId);
      return newsResponse;
    }catch(e){
      throw Exception("error");
@@ -33,6 +35,7 @@ class HomeRemoteRepo extends HomeRepo{
     );
 
     SourcesResponse sourcesResponse = SourcesResponse.fromJson(response.data);
+    await CacheHelper.saveSourceResponse(sourcesResponse, categoryId);
     return sourcesResponse;
   }catch(e){
     throw Exception("error");
@@ -45,7 +48,9 @@ class HomeRemoteRepo extends HomeRepo{
       Response response = await apiManager.get(
           "/v2/everything?q=$query"
       );
-      return NewsResponse.fromJson(response.data);
+      NewsResponse newsResponse = NewsResponse.fromJson(response.data);
+      await CacheHelper.saveNewsResponse(newsResponse, query);
+      return newsResponse;
     } catch (e) {
       throw Exception("Failed to search news: ${e.toString()}");
     }

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news/core/internet_checker.dart';
 import 'package:news/di.dart';
 import 'package:news/screens/home_Screen/view_Screen/detilse_news.dart';
 import 'package:news/screens/search/bloc/cubit.dart';
@@ -71,7 +72,7 @@ class _SearchItemState extends State<SearchItem> {
                       ),
                       onChanged: (value) {
                         if (_debounce?.isActive ?? false) _debounce?.cancel();
-                        _debounce = Timer(const Duration(milliseconds: 500), () {
+                        _debounce = Timer(const Duration(milliseconds: 600), () {
                           cubit.getSearch(value);
                         });
                       },
@@ -92,7 +93,7 @@ class _SearchItemState extends State<SearchItem> {
                               itemCount: cubit.searchList.length,
                               itemBuilder: (context, index) {
                                 return InkWell(
-                                  onLongPress: () {
+                                  onTap: () {
                                     showModalBottomSheet(context: context,
                                       backgroundColor: Colors.transparent,
 
@@ -255,8 +256,9 @@ class _SearchItemState extends State<SearchItem> {
                             ),
                           ),
 
-                        if (state is ErrorSearchState)
+                        if (state is ErrorSearchState && cubit.searchList.isEmpty)
                           const Center(child: Text("Something went wrong!")),
+
                       ]
                   ),
                 )

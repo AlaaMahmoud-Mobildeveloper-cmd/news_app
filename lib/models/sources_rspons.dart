@@ -1,5 +1,11 @@
-class SourcesResponse {
+
+import 'package:hive/hive.dart';
+
+@HiveType(typeId: 0)
+class SourcesResponse extends HiveObject {
+  @HiveField(0)
   String? status;
+  @HiveField(1)
   List<Sources>? sources;
 
   SourcesResponse({this.status, this.sources});
@@ -24,13 +30,21 @@ class SourcesResponse {
   }
 }
 
-class Sources {
+@HiveType(typeId: 1)
+class Sources extends HiveObject {
+  @HiveField(0)
   String? id;
+  @HiveField(1)
   String? name;
+  @HiveField(2)
   String? description;
+  @HiveField(3)
   String? url;
+  @HiveField(4)
   String? category;
+  @HiveField(5)
   String? language;
+  @HiveField(6)
   String? country;
 
   Sources(

@@ -1,14 +1,17 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:news/core/internet_checker.dart';
 import 'package:news/models/news_response.dart';
 import 'package:news/models/sources_rspons.dart';
 import 'package:news/screens/bloc/stats.dart';
-import 'package:news/screens/reposatry/repo.dart';
+import 'package:news/screens/reposatry/local/repo_local.dart';
+import 'package:news/screens/reposatry/remot/repo.dart';
 
 @injectable
 class HomeCubit extends Cubit<HomeState>{
-  HomeRepo repo;
-  HomeCubit(this.repo) : super(HomeInitState());
+  HomeRepoRemote repo;
+  HomeRepoLocal localRepo;
+  HomeCubit(this.repo,this.localRepo) : super(HomeInitState());
 
   List<Sources> sources = [];
   List<Articles> articles = [];
@@ -24,7 +27,9 @@ class HomeCubit extends Cubit<HomeState>{
     emit(GetNewsDataLoadingState());
     try{
 
-      NewsResponse newsResponse = await repo.getNewsResponse(sources[selectedIndex].id ?? "");
+      NewsResponse newsResponse =InternetConnectivity().isConnected
+          ? await repo.getNewsResponse(sources[selectedIndex].id ?? "")
+          : await localRepo.getNewsResponse(sources[selectedIndex].id ?? "") ;
       if(newsResponse.status == "error"){
         emit(GetNewsDataErrorState());
         return;
@@ -40,7 +45,9 @@ class HomeCubit extends Cubit<HomeState>{
     emit(GetSourcesLoadingState());
     try{
 
-      SourcesResponse sourcesResponse = await repo.getSourcesResponse(categoryId);
+      SourcesResponse sourcesResponse =InternetConnectivity().isConnected
+          ? await repo.getSourcesResponse(categoryId)
+          : await localRepo.getSourcesResponse(categoryId);
       sources = sourcesResponse.sources ?? [];
       emit(GetSourcesSuccessState());
       getNewsData();

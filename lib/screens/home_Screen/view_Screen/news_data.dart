@@ -69,13 +69,16 @@ class NewsData extends StatelessWidget {
                         Text(
                           bloc.articles[index].title ?? "",
                           maxLines: 1,
-                          style: Theme.of(context).textTheme.titleMedium,
+                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
                         ),
                         Text(
                           bloc.articles[index].description ?? "",
                           maxLines: 4,
                           style: Theme.of(context).textTheme.titleSmall?.copyWith(
                             fontSize: 14,
+                            color: Theme.of(context).colorScheme.primary,
                           ),
 
                         ),

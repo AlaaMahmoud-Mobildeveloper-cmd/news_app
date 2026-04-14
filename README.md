@@ -7,37 +7,17 @@ A modern news application built with Flutter, focusing on clean architecture, st
 
 Here is a visual guide to the **Moves App** features and user interface.
 
-### 1️⃣ Authentication & Onboarding
 <p align="center">
-  <img src="assets/screenshots/1(1).png" width="250" alt="Login Screen">
-  <img src="assets/screenshots/1(2).png" width="250" alt="Register Screen">
-  <img src="assets/screenshots/10.png" width="250" alt="Avatar Selection">
+  <img src="assets/screenshots/1 (1).png" width="98" alt="Login Screen">
+  <img src="assets/screenshots/1 (2).png" width="100" alt="Register Screen">
+  <img src="assets/screenshots/1 (3).png" width="104" alt="Avatar Selection">
+  <img src="assets/screenshots/1 (4).png" width="101" alt="Avatar Selection">
+  <img src="assets/screenshots/1 (5).png" width="99" alt="Avatar Selection">
+  <img src="assets/screenshots/1 (6).png" width="100" alt="Avatar Selection">
+  <img src="assets/screenshots/1 (7).png" width="103" alt="Avatar Selection">
+  <img src="assets/screenshots/1 (8).png" width="104" alt="Avatar Selection">
+  <img src="assets/screenshots/1 (9).png" width="98" alt="Avatar Selection">
 </p>
-*Experience a seamless login and a creative registration flow with custom avatar selection.*
-
-### 2️⃣ Exploring Content
-<p align="center">
-  <img src="assets/screenshots/3.png" width="250" alt="Home Screen">
-  <img src="assets/screenshots/4.png" width="250" alt="Movie Details">
-  <img src="assets/screenshots/5.png" width="250" alt="Search Screen">
-</p>
-*Browse the latest movies, view detailed information, and search for your favorites.*
-
-### 3️⃣ Personalization & Categories
-<p align="center">
-  <img src="assets/screenshots/6.png" width="250" alt="Categories">
-  <img src="assets/screenshots/7.png" width="250" alt="Profile Screen">
-  <img src="assets/screenshots/8.png" width="250" alt="Watch List">
-</p>
-*Filter by genre, manage your watch list, and customize your profile settings.*
-
-### 4️⃣ Profile Management
-<p align="center">
-  <img src="assets/screenshots/9.png" width="250" alt="Edit Profile">
-</p>
-*Keep your account up to date with the easy-to-use profile editor.*
----
-## 🏛 Architecture & Logic
 
 This project follows a structured approach to separate UI, Business Logic, and Data:
 
